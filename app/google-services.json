@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "595971603145",
+    "firebase_url": "https://agendafirebase-b1d7d.firebaseio.com",
+    "project_id": "agendafirebase-b1d7d",
+    "storage_bucket": "agendafirebase-b1d7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595971603145:android:880e82e0960947b736eb18",
+        "android_client_info": {
+          "package_name": "dievow.agendafirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595971603145-sv8rq0cbtfqpkhf43n6v9og39e4f010r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dievow.agendafirebase",
+            "certificate_hash": "0de8f8b90ea179b1d4b3048490d11e39dadc3eac"
+          }
+        },
+        {
+          "client_id": "595971603145-8mth3gjuu53ptefmd3l24kgv50lv5atj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClK8bwNroyvzZ8mIvH95OIkovDmFth5J4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595971603145-8mth3gjuu53ptefmd3l24kgv50lv5atj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

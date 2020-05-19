@@ -1,5 +1,6 @@
 package dievow.agendafirebase.modelo;
 
+//classe pessoa que contém os dados requeridos na agenda
 public class Pessoa {
 
     private String id_pessoa;

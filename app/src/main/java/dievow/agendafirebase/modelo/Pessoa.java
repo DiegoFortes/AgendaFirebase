@@ -3,23 +3,21 @@ package dievow.agendafirebase.modelo;
 //classe pessoa que contém os dados requeridos na agenda
 public class Pessoa {
 
-    private String id_pessoa;
+    private String id;
     private String nome;
     private String telefone;
     private String email;
     private String endereco;
 
-    //metodo construtor
     public Pessoa() {
     }
 
-    //getter and setter
-    public String getId_pessoa() {
-        return id_pessoa;
+    public String getId() {
+        return id;
     }
 
-    public void setId_pessoa(String id_pessoa) {
-        this.id_pessoa = id_pessoa;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -38,7 +36,7 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
-    public String getEmail() {
+    public String getEmail(String s) {
         return email;
     }
 
@@ -46,7 +44,7 @@ public class Pessoa {
         this.email = email;
     }
 
-    public String getEndereco() {
+    public String getEndereco(String s) {
         return endereco;
     }
 
@@ -54,11 +52,8 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    //exibir apenas nome do objeto
     @Override
     public String toString() {
-        return "Pessoa{" +
-                "nome='" + nome + '\'' +
-                '}';
+        return nome;
     }
 }

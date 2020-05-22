@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
             p.setId(UUID.randomUUID().toString());
             p.setNome(editText_nome.getText().toString());
             p.setTelefone(editText_tel.getText().toString());
-            p.getEmail(editText_email.getText().toString());
-            p.getEndereco(editText_endereco.getText().toString());
+            p.setEmail(editText_email.getText().toString());
+            p.setEndereco(editText_endereco.getText().toString());
             databaseReference.child("Pessoa").child(p.getId()).setValue(p);
             limparCampos ();
         }

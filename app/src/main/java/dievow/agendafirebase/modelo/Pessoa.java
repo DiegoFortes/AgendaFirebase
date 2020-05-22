@@ -36,7 +36,7 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
-    public String getEmail(String s) {
+    public String getEmail(){
         return email;
     }
 
@@ -44,8 +44,9 @@ public class Pessoa {
         this.email = email;
     }
 
-    public String getEndereco(String s) {
-        return endereco;
+    public String getEndereco() {
+
+    return endereco;
     }
 
     public void setEndereco(String endereco) {

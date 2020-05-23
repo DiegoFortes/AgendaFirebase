@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,8 +23,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
-    EditText editText_nome, editText_tel,editText_email,editText_endereco;
-    ListView listV_dados;
 
     private List<Pessoa> listPessoa = new ArrayList<Pessoa>();
     private ArrayAdapter<Pessoa> arrayAdapterPessoa;
@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     //objeto de conexão com o firebase
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    EditText editText_nome, editText_tel,editText_email,editText_endereco;
+    ListView listV_dados;
+    Pessoa pessoaSelecionada;
 
 
     @Override
@@ -42,14 +46,18 @@ public class MainActivity extends AppCompatActivity {
         editText_endereco = (EditText) findViewById(R.id.editText_endereco);
         listV_dados = (ListView) findViewById(R.id.listV_dados);
 
-    }
+        listV_dados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                pessoaSelecionada = (Pessoa)parent.getItemAtPosition(position);
+                editText_nome.setText(pessoaSelecionada.getNome());
+                editText_tel.setText(pessoaSelecionada.getTelefone());
+                editText_email.setText(pessoaSelecionada.getEmail());
+                editText_endereco.setText(pessoaSelecionada.getEndereco());
+            }
+        });
 
-    private void inicializarFirebase() {
-        FirebaseApp.initializeApp(MainActivity.this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,8 +81,29 @@ public class MainActivity extends AppCompatActivity {
             p.setEndereco(editText_endereco.getText().toString());
             databaseReference.child("Pessoa").child(p.getId()).setValue(p);
             limparCampos ();
+        }else if(id == R.id.menu_editar){
+            Pessoa p = new Pessoa();
+            p.setId(pessoaSelecionada.getId());
+            p.setNome(editText_nome.getText().toString().trim());
+            p.setTelefone(editText_tel.getText().toString().trim());
+            p.setEmail(editText_email.getText().toString().trim());
+            p.setEndereco(editText_endereco.getText().toString().trim());
+            databaseReference.child("Pessoa").child(p.getId()).setValue(p);
+            limparCampos();
+        }else if(id == R.id.menu_deletar){
+            Pessoa p = new Pessoa();
+            p.setId(pessoaSelecionada.getId());
+            databaseReference.child("Pessoa").child(p.getId()).removeValue();
+            limparCampos();
         }
         return true;
+    }
+
+    //Inicializa conectividade do Firebase
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(MainActivity.this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
     }
 
     //limpa campos preenchidos

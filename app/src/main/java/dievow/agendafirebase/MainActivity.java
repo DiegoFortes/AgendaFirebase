@@ -38,8 +38,12 @@ public class MainActivity extends AppCompatActivity {
     Pessoa pessoaSelecionada;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        inicializarFirebase();
+        eventoDatabase();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         editText_nome = (EditText) findViewById(R.id.editText_nome);
@@ -71,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        inicializarFirebase();
-        eventoDatabase();
+
 
         if(id == R.id.menu_novo){
             if(editText_nome.getText().length() == 0) {

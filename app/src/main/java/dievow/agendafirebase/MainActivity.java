@@ -1,7 +1,9 @@
 package dievow.agendafirebase;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -73,30 +75,72 @@ public class MainActivity extends AppCompatActivity {
         eventoDatabase();
 
         if(id == R.id.menu_novo){
-            Pessoa p = new Pessoa();
-            p.setId(UUID.randomUUID().toString());
-            p.setNome(editText_nome.getText().toString());
-            p.setTelefone(editText_tel.getText().toString());
-            p.setEmail(editText_email.getText().toString());
-            p.setEndereco(editText_endereco.getText().toString());
-            databaseReference.child("Pessoa").child(p.getId()).setValue(p);
-            limparCampos ();
+            if(editText_nome.getText().length() == 0) {
+
+                editText_nome.setError("campo obrigatório");
+            }else{
+                AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
+                alerta.setMessage("Novo Registro Incluido!");
+                alerta.show();
+                inserirRegistro();
+            }
         }else if(id == R.id.menu_editar){
-            Pessoa p = new Pessoa();
-            p.setId(pessoaSelecionada.getId());
-            p.setNome(editText_nome.getText().toString().trim());
-            p.setTelefone(editText_tel.getText().toString().trim());
-            p.setEmail(editText_email.getText().toString().trim());
-            p.setEndereco(editText_endereco.getText().toString().trim());
-            databaseReference.child("Pessoa").child(p.getId()).setValue(p);
-            limparCampos();
+            if(editText_nome.getText().length() == 0) {
+                AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
+                alerta.setMessage("Nenhum registro foi selecionado");
+            }else{
+            AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
+            alerta.setMessage("Registro atualizado com sucesso!");
+            alerta.show();
+            editarRegistro();
+            }
         }else if(id == R.id.menu_deletar){
-            Pessoa p = new Pessoa();
-            p.setId(pessoaSelecionada.getId());
-            databaseReference.child("Pessoa").child(p.getId()).removeValue();
-            limparCampos();
+            AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
+            alerta.setTitle("Excluir Produto");
+            alerta.setIcon( android.R.drawable.ic_delete );
+            alerta.setMessage("Confirma a exclusão do registro:  " + pessoaSelecionada.getNome() + "de sua agenda?");
+            alerta.setNeutralButton("Não", null);
+            alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    apagarRegistro();
+                }
+            });
+            alerta.show();
         }
         return true;
+    }
+
+    //Função inserir registro
+    private void inserirRegistro() {
+        Pessoa p = new Pessoa();
+        p.setId(UUID.randomUUID().toString());
+        p.setNome(editText_nome.getText().toString());
+        p.setTelefone(editText_tel.getText().toString());
+        p.setEmail(editText_email.getText().toString());
+        p.setEndereco(editText_endereco.getText().toString());
+        databaseReference.child("Pessoa").child(p.getId()).setValue(p);
+        limparCampos ();
+    }
+
+    //Função editar registro
+    private void editarRegistro() {
+        Pessoa p = new Pessoa();
+        p.setId(pessoaSelecionada.getId());
+        p.setNome(editText_nome.getText().toString().trim());
+        p.setTelefone(editText_tel.getText().toString().trim());
+        p.setEmail(editText_email.getText().toString().trim());
+        p.setEndereco(editText_endereco.getText().toString().trim());
+        databaseReference.child("Pessoa").child(p.getId()).setValue(p);
+        limparCampos();
+    }
+
+    //Funcão apagar registro
+    private void apagarRegistro() {
+        Pessoa p = new Pessoa();
+        p.setId(pessoaSelecionada.getId());
+        databaseReference.child("Pessoa").child(p.getId()).removeValue();
+        limparCampos();
     }
 
     //Inicializa conectividade do Firebase

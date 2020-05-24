@@ -4,47 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7F8183"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4C4C4C"
+        android:text="Selecione ou insira um novo registro:"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editText_nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="#C6C6C6"
         android:ems="10"
         android:hint="Nome"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:text="Nome:"
+        android:textColor="#161B32"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editText_tel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="#C6C6C6"
         android:ems="10"
         android:hint="Telefone"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:text="Telefone:"
+        android:textColor="#161B32"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editText_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="#C6C6C6"
         android:ems="10"
         android:hint="E-mail"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:text="E-mail:"
+        android:textColor="#161B32"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editText_endereco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="#C6C6C6"
         android:ems="10"
         android:hint="Endereço"
-        android:inputType="textPostalAddress" />
+        android:inputType="textPostalAddress"
+        android:text="Endereço:"
+        android:textColor="#161B32"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/listV_dados"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
-
+        android:layout_height="match_parent"
+        android:cacheColorHint="#FFFFFF"></ListView>
 
 
 </LinearLayout>
